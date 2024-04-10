@@ -1,5 +1,7 @@
 .grid-container {
-    display: inline-block;
+    text-align: center;
+    height: auto;
+    width: auto;
 }
 
 .grid {
@@ -25,7 +27,7 @@
 .board {
     --grid-size: 4; /* Start with 4x4 */
     display: grid;
-    width: 200px;
-    height: 200px;
+    width: auto;
+    height: auto;
     grid-template: repeat(var(--grid-size), 1fr) / repeat(var(--grid-size), 1fr);
   }

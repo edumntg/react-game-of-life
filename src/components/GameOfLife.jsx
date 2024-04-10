@@ -3,6 +3,7 @@ import { Grid } from "./Grid"
 import { World } from "../objects/World";
 import "../styles/gameoflife.css";
 export function GameOfLife({world, setWorld, running, setRunning}) {
+    
     const step = () => {
         if(!running) {
           return;
@@ -14,24 +15,27 @@ export function GameOfLife({world, setWorld, running, setRunning}) {
     }
     
     const start = () => {
+        //console.log('Start called', running);
         step();
-        if(running) {
-          setTimeout(() => {
+        setTimeout(() => {
             start();
-          }, 200);
-        }
+        }, 200);
     }
-    
+
     return (
         <>
-            <button onClick={() => {
-                setRunning(!running);
-                start();
-            }}>{running ? 'Stop' : 'Start'}</button>
-            <div className="gol">
-                {/* <div className="steps-performed">{world.stepsPerformed}</div> */}
-                <Grid world={world} setWorld={setWorld}/>
+            <div className="gol-container">
+                <div className="steps-performed">Steps: {world.stepsPerformed}</div>
+                <button className="start-btn" onClick={() => {
+                    setRunning(!running);
+                    start();
+                }}>{running ? 'Stop' : 'Start'}</button>
+                <div className="gol-grid">
+                    {/* <div className="steps-performed">{world.stepsPerformed}</div> */}
+                    <Grid world={world} setWorld={setWorld}/>
+                </div>
             </div>
+
             {/* <div className="board">
                 {[...Array(16).keys()].map(x => <div className="square"/>)}
             </div> */}

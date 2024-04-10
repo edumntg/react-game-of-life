@@ -208,7 +208,7 @@ export class World{
 
         this.stepsPerformed++;
 
-        console.log("Number of cells alive", this.cells.filter(cell => cell.isAlive()).length);
-        console.log("Killed:", cellsKilled, ", revived:", cellsRevived);
+        //console.log("Number of cells alive", this.cells.filter(cell => cell.isAlive()).length);
+        //console.log("Killed:", cellsKilled, ", revived:", cellsRevived);
     }
 }
