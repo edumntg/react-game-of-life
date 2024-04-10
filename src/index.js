@@ -5,6 +5,6 @@ import { GameOfLife } from './components/GameOfLife';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GameOfLife rows={100} columns={100} numOfCells={500}/>
+    <GameOfLife size={100} numOfCells={50}/>
   </React.StrictMode>
 );

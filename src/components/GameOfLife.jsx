@@ -1,16 +1,27 @@
 import { useState } from "react"
 import { Grid } from "./Grid"
 import { World } from "../objects/World";
+import "../styles/gameoflife.css";
 
-export function GameOfLife({rows, columns, numOfCells}) {
+export function GameOfLife({size, numOfCells}) {
 
-    const [world, setWorld] = useState(new World(rows,columns,numOfCells));
+    const [world, setWorld] = useState(new World(size,numOfCells));
 
-    console.log(world)
+    function step() {
+        world.step();
+        setWorld(world);
+    }
 
     return (
-        <div>
-            <Grid world={world}/>
-        </div>
+        <>
+            <div>
+                <div className="steps-performed">{world.stepsPerformed}</div>
+                <button onClick={step}>Step</button>
+                <Grid world={world}/>
+            </div>
+            {/* <div className="board">
+                {[...Array(16).keys()].map(x => <div className="square"/>)}
+            </div> */}
+        </>
     )
 }
