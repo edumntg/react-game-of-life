@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import { GameOfLife } from './components/GameOfLife';
+import { World } from './objects/World';
+import { useState } from 'react';
 
 function App() {
+  const [world, setWorld] = useState(new World(30,700));
+  const [running, setRunning] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GameOfLife world={world} setWorld={setWorld} running={running} setRunning={setRunning}/>
     </div>
   );
 }

@@ -34,6 +34,17 @@ export class World{
         this.stepsPerformed = 0;
     }
 
+    static fromWorld(world) {
+        // Create new world
+        const newWorld = new World(world.size, world.numOfCells);
+        newWorld.cells = world.cells;
+        newWorld.count = world.count;
+        newWorld.stepsPerformed = world.stepsPerformed;
+
+        return newWorld;
+
+    }
+
     isPosValid(pos) {
         return pos.x >= 0 && pos.x < this.size && pos.y >= 0 && pos.y < this.size;
     }
@@ -43,7 +54,7 @@ export class World{
             // Get a random position
             let pos = this.randomFreePosition();
             // Create cell
-            let cell = new CellObject(pos.x, pos.y, true);
+            let cell = new CellObject(pos.x, pos.y);
             // Add to world
             this.addCell(cell);
         }
@@ -102,7 +113,7 @@ export class World{
     }
     
     hasCell(x, y) {
-        return this.cells.find(cell => cell.x === x && cell.y === y);
+        return !!this.get(x,y);
     }
     
     randomMovement(cell) {
@@ -115,12 +126,12 @@ export class World{
         if(!this.canMove(cell, dx, dy)) {
             return;
         }
-
-        const newPos = {x: cell.x + dx, y: cell.y + dy};
-
         // Move cell
-        const oldPos = {x: cell.x, y: cell.y};
-        cell.move(newPos);
+        cell.move({dx, dy});
+
+        // Update cells array
+        const cellIndex = this.cells.findIndex(_cell => _cell.id === cell.id);
+        this.cells[cellIndex] = cell;
 
         // Remove cell from old world pos
         //this.grid[oldPos.x][oldPos.y] = -1;
