@@ -1,0 +1,12 @@
+.tile {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    display: inline-block;
+}
+
+.empty {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+}
